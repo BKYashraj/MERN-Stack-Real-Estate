@@ -4,10 +4,12 @@ import dotenv from 'dotenv';
 import userRouter from './routes/user.route.js';
 import authRouter from './routes/auth.route.js';
 
+// to use the data of env file
 dotenv.config();
 
 mongoose
   .connect(process.env.MONGOURL)
+  //if connection is successful then goes in .then part
   .then(()=>{
      console.log('Connected to MongoDB');
   })
