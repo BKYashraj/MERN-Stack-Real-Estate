@@ -1,7 +1,10 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-
+import { signInStart, signInSuccess, signInFailure } from '../redux/user/User.Slice';
+import { useDispatch} from 'react-redux';
 export default function SignIn() {
+
+  const dispatch = useDispatch();
 
   const navigate = useNavigate();
   
@@ -14,12 +17,15 @@ export default function SignIn() {
   };
   console.log(formData);
   
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(false);
+  // const [error, setError] = useState(null);
+  // const [loading, setLoading] = useState(false);
+  const { loading, error } = useState((state) => state.user);
   const handleSubmit = async (e) => {
     e.preventDefault();  //to not refresh the whole page
     try {
-      setLoading(true);
+      // setLoading(true);
+      dispatch(signInStart());
+
       // create proxy in vite.config.js file
       const res = await fetch("/api/auth/signin", {
         method: "POST",
@@ -32,17 +38,20 @@ export default function SignIn() {
       const data = await res.json();
 
       if (data.success === false) {
-        setLoading(false);
-        setError(data.message);
+        // setLoading(false);
+        // setError(data.message);
+        dispatch(signInFailure(data.message));
         return; 
       }
-      setLoading(false);
-      setError(null);
+      // setLoading(false);
+      // setError(null);
+      dispatch(signInSuccess(data));
       navigate("/");
 
     } catch (error) {
-      setLoading(false);
-      setError(error.message);
+      // setLoading(false);
+      // setError(error.message);
+      dispatch(signInFailure(error.message));
     }
   };
 
