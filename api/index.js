@@ -19,6 +19,7 @@ mongoose
 
 const app = express();
 
+// this is going to allow Json as the input of the server. 
 app.use(express.json());
 
 app.listen(3000, ()=> {
