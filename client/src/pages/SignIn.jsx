@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { signInStart, signInSuccess, signInFailure } from '../redux/user/User.Slice';
-import { useDispatch} from 'react-redux';
+import { signInStart, signInSuccess, signInFailure } from '../redux/user/user.Slice';
+import { useDispatch, useSelector} from 'react-redux';
+
 export default function SignIn() {
 
   const dispatch = useDispatch();
@@ -19,9 +20,10 @@ export default function SignIn() {
   
   // const [error, setError] = useState(null);
   // const [loading, setLoading] = useState(false);
-  const { loading, error } = useState((state) => state.user);
+  const { loading, error } = useSelector((state) => state.user);
   const handleSubmit = async (e) => {
-    e.preventDefault();  //to not refresh the whole page
+    e.preventDefault();  
+    //to not refresh the whole page
     try {
       // setLoading(true);
       dispatch(signInStart());

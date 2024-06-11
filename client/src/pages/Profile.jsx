@@ -1,9 +1,9 @@
-import React from 'react'
+
 
 export default function Profile() {
   return (
     <div>
-      Profile section updated
+      <h1>Profile section updated</h1>
     </div>
   )
 }
