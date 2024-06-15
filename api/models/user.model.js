@@ -17,7 +17,7 @@ const userSchema = new mongoose.Schema({
   },
   avatar :{
     type:String,
-    default:"https://lh3.googleusercontent.com/a/ACg8ocIp7Wx7PU-qlhogm2x7gDs0f_aCBkt49It2TufthZ8zcSlEN10=s96-c"   
+    default:"https://img.freepik.com/free-vector/blue-circle-with-white-user_78370-4707.jpg?size=626&ext=jpg"   
 },
 }, {timestamps:true});
 
